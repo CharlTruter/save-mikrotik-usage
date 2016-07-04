@@ -8,10 +8,25 @@ is hit between poll periods).
 
 # Required environment variables
 
-The following environment variables need to be set to use the script:
+The following environment variables are required:
 
 - `DATABASE_IP`: Ip of the database to save the usage data to.
 - `DATABASE_NAME`: Name of the database to save the usage data to.
 - `DATABASE_USERNAME`: Username to use when connecting to the database.
 - `DATABASE_PASSWORD`: Password to use when connecting to the database.
 - `MIKROTIK_IP`: Ip address of your mikrotik device.
+- `PYTHON_SCRIPT_DIR`: Directory in which the python scripts are located - if scripts are located in /home/user/scripts/scriptname.py, set this as `/home/user/scripts`
+
+# Scripts
+
+These python scripts performs various tasks and are called by Jenkins jobs on a schedule.
+The following scripts are included:
+
+- `save_web_access_usage.py`: Uses the web-access reporting on a Mikrotik router to pull usage information based on ip addresses and saves this to a MySQL database.
+
+# Jenkins
+
+The configuration files for Jenkins jobs are included which you can use to execute the scripts on a schedule.
+The following jobs are included:
+
+- `collect_usage` - Used to execute the web-access based usage collection script.
